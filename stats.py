@@ -11,7 +11,8 @@ from streamlit import components
 import plotly.graph_objects as go
 import plotly.subplots as ms
 
-df = pd.read_feather("D:/TRADING/Backtesting/master file/data_2019_current.feather")
+# df = pd.read_feather("D:/TRADING/Backtesting/master file/data_2019_current.feather")
+df = pd.read_feather("data_2019_current.feather")
 
 
 st.set_page_config(page_title="Backtest", page_icon=":bar_chart", layout="wide")
