@@ -10,13 +10,30 @@ import streamlit as st
 from streamlit import components
 import plotly.graph_objects as go
 import plotly.subplots as ms
+import paramiko
 
 # df = pd.read_feather("D:/TRADING/Backtesting/master file/data_2019_current.feather")
-df = pd.read_feather("data_2019_current.feather")
+# df = pd.read_feather("data_2022_plus.feather")
 
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect('31.220.95.105', username='root', password='Murcia2000!')
 
-st.set_page_config(page_title="Backtest", page_icon=":bar_chart", layout="wide")
-st.title(" :bar_chart: Backtest")
+sftp = ssh.open_sftp()
+
+# Download the file
+remote_file_path = '/root/backtest_webpage/data_2022_plus.feather'
+# local_file_path = 'D:\\backtest_webpage\\data_2022_plus.feather' 
+local_file_path = 'data_2022_plus.feather' 
+sftp.get(remote_file_path, local_file_path)
+
+# Close the connection
+sftp.close()
+ssh.close()
+
+# Now read the feather file into a DataFrame
+df = pd.read_feather(local_file_path)
+
 
 API_KEY = '4r6MZNWLy2ucmhVI7fY8MrvXfXTSmxpy'
 
