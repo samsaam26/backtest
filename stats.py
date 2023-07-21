@@ -34,6 +34,8 @@ ssh.close()
 # Now read the feather file into a DataFrame
 df = pd.read_feather(local_file_path)
 
+st.set_page_config(page_title="Backtest", page_icon=":bar_chart", layout="wide")
+st.title(" :bar_chart: Backtest")
 
 API_KEY = '4r6MZNWLy2ucmhVI7fY8MrvXfXTSmxpy'
 
